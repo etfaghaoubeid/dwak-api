@@ -1,0 +1,23 @@
+version: "3.5"
+services: 
+  db:
+    image: "postgres:12"
+    container_name: db_container
+    ports: 
+      - "${DB_PORT}:5432"
+    environment: 
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_NAME}
+    # end of this service 
+  pg_admin:
+    container_name: pg_admin
+    image: "dpage/pgadmin4"
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: ${PG_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PG_PASSWORD}
+    ports:
+      - "${PG_PORT}:80"
+  # end of this services  
+        
+        
