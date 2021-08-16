@@ -1,6 +1,9 @@
 const { Router } = require("express");
-const { signUp } = require("../controllers/user.controller");
+const { signUp, signIn } = require("../controllers/user.controller");
+const verifySignUp = require("../middlewares/auth.verifySignUp");
+
 const router = Router();
-router.get('/sign-up', signUp)
+router.post('/sign-up', [verifySignUp.chekDuplicatedUsernameAndEmail, verifySignUp.checkRolesExist], signUp);
+router.post('/sign-in', signIn)
 
 module.exports = router

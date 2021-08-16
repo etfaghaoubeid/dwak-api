@@ -13,34 +13,42 @@ async function getRoles(){
 
 async function chekDuplicatedUsernameAndEmail(req, res,next){
     try {
+
         const {username, email } =req.body
-        const user = User.findOne({where:{
+        const user = await User.findOne({
+            where: {
             username
         }});
-        if(user){
+        if (user && user.username === username) {
             return res.status(400).send({message:"Username already in use"});
         };
-        const userWithThisEmail = User.findOne({where:{
+        const userWithThisEmail = await User.findOne({
+            where: {
             email
         }});
-        if(userWithThisEmail){
+        if (userWithThisEmail && userWithThisEmail.email == email) {
             return res.status(400).send({message:"Email already in use"});
         };
         next()
         
     } catch (error) {
-        console.log('Can not ferify user sign up ')
+        console.log('Can not ferify user sign up ', error.message)
     }
 } 
 async function checkRolesExist(req ,res, next){
-    if(req.body.roles){
-        for(let i=0 ;i<req.body.roles.length;i++){
-            if(ROLES?.includes(req.body.roles[i])){
-                next()
+
+    const { roles } = req.body
+    if (roles) {
+        for (let i = 0; i < roles.length; i++) {
+            if (ROLES?.includes(roles[i])) {
+                return next()
             };
-            return res.send({message:'Failed! Role does not exist'+req.body.roles[i]})
         }
+        return res.send({ message: 'Failed! Role does not exist' })
     }
+    console.log(" checkRolesExist middleware 11111111111111 just before next", roles)
+
+    next()
 }
 const verifySignUp= {
     chekDuplicatedUsernameAndEmail,

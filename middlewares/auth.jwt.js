@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
 
-function verifyToken(req , res, next){
+async function verifyToken(req, res, next) {
     const token = req.headers["x-access-token"];
     if(!token){
         return res.status(403).send({
@@ -9,14 +9,16 @@ function verifyToken(req , res, next){
         });
     };
     try{
-        const decoded = await jwt.verify(tolen,process.en.SECRET_KEY)
-        req.userId = decoded.userId
+        const decoded = jwt.verify(token, process.env.SECRET_KEY)
+        console.log("decodedddddddddd", decoded)
+        req.userId = decoded.id
+        console.log(req.userId)
         next()
 
     }catch(error){
         return res.status(401).send({
             message:"Unauthorized!"
-        })
+        });
     }
 };
 async function isAdmin(req ,res, next){
@@ -43,10 +45,11 @@ async function isAdmin(req ,res, next){
 
 async function isModerator(req ,res, next){
     try {
-        const user = await User.findByPk(req.userId);
+        const { userId } = req
+        const user = await User.findByPk(userId);
         const roles = await user.getRoles();
         for (let i = 0; i < roles.length; i++) {
-            if(roles[i].name==='moderator'){
+            if (roles[i].name === 'moderator') {
                 return next();
             };
             continue;
