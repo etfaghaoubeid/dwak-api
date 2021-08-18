@@ -1,5 +1,22 @@
+const Accessory = require("./accessory.model");
+const Phone = require("./phone.model");
+const Product = require("./product.model");
 const Role = require("./role.model");
 const User = require("./user.model");
+
+Product.hasOne(Phone, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Phone.belongsTo(Product);
+
+Product.hasOne(Accessory, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Accessory.belongsTo(Product);
+
+
 Role.belongsToMany(User, {
     through:'user_roles', 
     foreignKey:'roleId', 
@@ -17,5 +34,7 @@ User.belongsToMany(Role,{
 })
 module.exports= {
     User, 
-    Role
+    Role,
+    Product,
+    Phone
 }

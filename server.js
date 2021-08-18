@@ -27,6 +27,7 @@ app.use(function (req, res, next) {
 
 app.use("/api/v1/auth", require("./routes/user.routes"));
 app.use("/api/v1/content", require("./routes/phone.routes"));
+app.use("/api/v1/phones", require("./routes/product.routes"))
 app.listen(PORT, () => {
     console.log(`app start on port:${PORT}`);
 })   

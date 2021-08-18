@@ -53,4 +53,45 @@ GET http://localhost:3333/api/v1/content/mod HTTP/1.1
 Content-Type: application/json
 x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjI5MTUxOTM5LCJleHAiOjE2MjkyMzgzMzl9.KP31VtwFz-eh50OrAi9-NMIJ60txE2nz0Fir2uMdLmE
 
-###
+### PHONES 
+### add phone
+POST  http://localhost:3333/api/v1/phones/add-phone HTTP/1.1
+Content-Type: application/json
+
+ {
+    "price":44500,
+    "description":"Phone description",
+    "images":"iamge",
+    "quantity":4,
+    "name":"Iphone 12 Pro Max",
+    "memory":256,
+    "isUsed":false,
+    "ref": "5445566TG33KL"
+ }
+###  update phone
+PUT  http://localhost:3333/api/v1/phones/9 HTTP/1.1
+Content-Type: application/json
+
+ {
+    "name":"Iphone 12 Pro Max  Update",
+    "price":44500,
+    "images":"iamge",
+    "quantity":10,
+    "ref": "5445566TG33KL updated",
+    "description":"Phone description ",
+    "isUsed":true,
+    "memory":1000
+ }
+### get phones 
+GET  http://localhost:3333/api/v1/phones/ HTTP/1.1
+Content-Type: application/json
+
+### delete phone porduct
+DELETE  http://localhost:3333/api/v1/phones/18 HTTP/1.1
+Content-Type: application/json
+
+### get phone porduct
+Get  http://localhost:3333/api/v1/phones/9 HTTP/1.1
+Content-Type: application/json
+
+### 
