@@ -3,6 +3,8 @@ const Phone = require("./phone.model");
 const Product = require("./product.model");
 const Role = require("./role.model");
 const User = require("./user.model");
+const Cart = require("./cart.model")
+const Order = require("./order.model")
 
 Product.hasOne(Phone, {
     onDelete: 'CASCADE',
@@ -36,5 +38,8 @@ module.exports= {
     User, 
     Role,
     Product,
-    Phone
+    Phone,
+    Accessory,
+    Cart,
+    Order
 }

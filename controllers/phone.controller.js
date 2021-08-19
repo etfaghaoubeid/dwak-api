@@ -39,7 +39,7 @@ exports.addPhone = async (req, res) => {
 
 exports.getPhones = async (req, res) => {
     try {
-        const phoneProducts = await Phone.findAll({ include: [{ model: Product }] });
+        const phoneProducts = await Phone.findAll({ where: { include: [{ model: Product }] } });
         return res.status(200).json({
             message: "get Phones successfuly",
             phoneProducts
@@ -65,11 +65,11 @@ exports.updatePhone = async (req, res) => {
             ref,
         } = req.body;
         let productToUpdate = await Product.findByPk(id, { include: [{ model: Phone }] });
-        // let phoneToUpdate = await productToUpdate.getPhone()
-        // let r = await phoneToUpdate.update({
-        //     memory: memory,
-        //     isUsed: isUsed,
-        // })
+        let phoneToUpdate = await productToUpdate.getPhone()
+        let updatedPhone = await phoneToUpdate.update({
+            memory: memory,
+            isUsed: isUsed,
+        })
         const updatedPhoneProduct = await productToUpdate.update({
             name: name || productToUpdate.name,
             price: price || productToUpdate.price,
@@ -77,10 +77,6 @@ exports.updatePhone = async (req, res) => {
             quantity: quantity || productToUpdate.quantity,
             description: description || productToUpdate.description,
             ref: ref || productToUpdate.ref,
-            phone: {
-                memory: memory || productToUpdate.phone.memory,
-                isUsed: isUsed || productToUpdate.phone.isUsed,
-            }
         })
         return res.status(201).json({
             message: "prodcut updated  succefuly",
@@ -93,13 +89,11 @@ exports.updatePhone = async (req, res) => {
         })
 
     }
-
-
 }
 exports.deletePhone = async (req, res) => {
     try {
         const { id } = req.params;
-        const phoneProduct = await Phone.findByPk(id);
+        const phoneProduct = await Product.findByPk(id, { include: [{ model: Phone }] });
         if (phoneProduct) {
             await phoneProduct.destroy();
             return res.status(201).json({

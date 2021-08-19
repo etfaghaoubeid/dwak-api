@@ -75,12 +75,12 @@ Content-Type: application/json
  {
     "name":"Iphone 12 Pro Max  Update",
     "price":44500,
-    "images":"iamge",
+    "images":"iamge update",
     "quantity":10,
     "ref": "5445566TG33KL updated",
     "description":"Phone description ",
-    "isUsed":true,
-    "memory":1000
+    "isUsed":false,
+    "memory":1001
  }
 ### get phones 
 GET  http://localhost:3333/api/v1/phones/ HTTP/1.1
@@ -92,6 +92,49 @@ Content-Type: application/json
 
 ### get phone porduct
 Get  http://localhost:3333/api/v1/phones/9 HTTP/1.1
+Content-Type: application/json
+
+###
+## ACCESSORIES
+### add phone
+POST  http://localhost:3333/api/v1/accessories/add-accessory HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Chargeur Iphone",
+    "images":"iamge chargeur",
+    "price":100,
+    "quantity":58,
+    "description":"Chargeur Iphone",
+    "ref": "5445566TG33KL",
+    "accessory_type":"chargeur",
+    "is_original":false
+     
+}
+###  update phone
+PUT  http://localhost:3333/api/v1/accessories/24 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Chargeur Iphone updated",
+    "images":"iamge chargeur",
+    "price":222,
+    "quantity":63,
+    "description":"Chargeur Iphone",
+    "ref": "5445566TG33KL",
+    "accessory_type":"chargeur updated",
+    "is_original":false
+}
+### get phones 
+GET  http://localhost:3333/api/v1/accessories/ HTTP/1.1
+Content-Type: application/json
+
+### delete phone porduct
+DELETE  http://localhost:3333/api/v1/accessories/24 HTTP/1.1
+Content-Type: application/json
+
+### get phone porduct
+Get  http://localhost:3333/api/v1/accessories/24 HTTP/1.1
 Content-Type: application/json
 
 ### 
