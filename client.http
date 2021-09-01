@@ -60,12 +60,13 @@ Content-Type: application/json
 
  {
     "price":44500,
-    "description":"Phone description",
-    "images":"iamge",
+    "description":"The App Store launched 10 years ago. Apps have made the iPhone what it is today, and users wouldn’t find the device as valuable without them. In a decade, the App Store has redefined the way we live: it’s enabled countless new businesses, created millions of jobs and generated entirely new industries. As of this year, the App Store draws in more than 500 million weekly users. Apple makes billions of dollars from the App Store thanks to the mobile app development industry and for this reason, Apple strives to maintain a healthy relationship with developers by acknowledging quality products and featuring their work.",
+    "images":["https://images.unsplash.com/photo-1610602699083-1d70b860505b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80", 
+    "https://images.unsplash.com/photo-1610602699083-1d70b860505b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"],
     "quantity":4,
     "name":"Iphone 12 Pro Max",
     "memory":256,
-    "isUsed":false,
+    "isUsed":true,
     "ref": "5445566TG33KL"
  }
 ###  update phone
@@ -91,7 +92,7 @@ DELETE  http://localhost:3333/api/v1/phones/18 HTTP/1.1
 Content-Type: application/json
 
 ### get phone porduct
-Get  http://localhost:3333/api/v1/phones/9 HTTP/1.1
+Get  http://localhost:3333/api/v1/phones/1 HTTP/1.1
 Content-Type: application/json
 
 ###
@@ -102,13 +103,16 @@ Content-Type: application/json
 
 {
     "name":"Chargeur Iphone",
-    "images":"iamge chargeur",
+    "images":[
+        "https://images.unsplash.com/photo-1572721546624-05bf65ad7679?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3366&q=80",
+        "https://images.unsplash.com/photo-1572721546624-05bf65ad7679?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3366&q=80"
+    ],
     "price":100,
     "quantity":58,
-    "description":"Chargeur Iphone",
+    "description":"s have made the iPhone what it is today, and users wouldn’t find the device as valuable without them. In a decade, the App Store has redefined the way we live: it’s enabled countless new businesses, created millions of jobs and generated entirely new industries. As of this year, the App Store draws in more than 500 million weekly users. Apple makes billio",
     "ref": "5445566TG33KL",
     "accessory_type":"chargeur",
-    "is_original":false
+    "is_original":true
      
 }
 ###  update phone
@@ -117,7 +121,8 @@ Content-Type: application/json
 
 {
     "name":"Chargeur Iphone updated",
-    "images":"iamge chargeur",
+    "images":["https://images.unsplash.com/photo-1610602699083-1d70b860505b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80", 
+    "https://images.unsplash.com/photo-1610602699083-1d70b860505b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"],
     "price":222,
     "quantity":63,
     "description":"Chargeur Iphone",
@@ -125,7 +130,7 @@ Content-Type: application/json
     "accessory_type":"chargeur updated",
     "is_original":false
 }
-### get phones 
+### get accessories 
 GET  http://localhost:3333/api/v1/accessories/ HTTP/1.1
 Content-Type: application/json
 

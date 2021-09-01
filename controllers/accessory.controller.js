@@ -54,10 +54,9 @@ exports.getAccessories = async (req, res) => {
     try {
         const accessories = await Accessory.findAll({ include: [{ model: Product }] });
 
-        return res.status(201).json({
-            message: "accessories fetched succefuly",
+        return res.status(201).send(
             accessories
-        });
+        );
 
     } catch (error) {
         return res.status(500).json({

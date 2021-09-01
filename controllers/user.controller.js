@@ -17,12 +17,12 @@ exports.signUp = async (req, res) => {
             });
             const newUser = await user.save();
             await user.setRoles(existingRoles);
-            return res.status(201).send({ message: 'user was register successfuly', newUser });
+            return res.status(201).send({ message: 'user was register successfuly', user: newUser });
 
         } else {
-            const svedUser = await user.save();
+            const savedUser = await user.save();
             await user.setRoles([1]);
-            return res.send({ message: 'User was registred successfully', svedUser })
+            return res.send({ message: 'User was registred successfully', user: savedUser })
         }
 
     } catch (error) {
@@ -59,7 +59,8 @@ exports.signIn = async (req, res) => {
             username: user.username,
             email: user.email,
             roels: authorities,
-            accessToken: token
+            accessToken: token,
+            message: "Sign in success"
         });
     } catch (error) {
         return res.status(500).send({ message: error.message });
@@ -68,7 +69,6 @@ exports.signIn = async (req, res) => {
 
 async function seedDB(){
     try {
-        console.log("sign-up route requested 11111111111111111111")
         const user = new User({ username: "atigh", email: "atigh@gmail.com", password:"`atigh" });
         const savedUser = await user.save();
         const r1= new Role({name:"user"});

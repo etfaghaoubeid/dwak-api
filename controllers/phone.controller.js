@@ -39,10 +39,9 @@ exports.addPhone = async (req, res) => {
 
 exports.getPhones = async (req, res) => {
     try {
-        const phoneProducts = await Phone.findAll({ where: { include: [{ model: Product }] } });
-        return res.status(200).json({
-            message: "get Phones successfuly",
-            phoneProducts
+        const phones = await Phone.findAll({ include: [{ model: Product }] });
+        return res.status(200).send({
+            phones
         });
     } catch (error) {
         return res.status(500).json({

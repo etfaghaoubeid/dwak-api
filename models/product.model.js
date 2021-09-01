@@ -10,13 +10,13 @@ const Product = db.define('products', {
         type: DataTypes.INTEGER
     },
     images: {
-        type: DataTypes.STRING
+        type: DataTypes.ARRAY(DataTypes.STRING)
     },
     quantity: {
         type: DataTypes.INTEGER
     },
     description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
     },
     ref: {
         type: DataTypes.STRING,
